@@ -1,0 +1,38 @@
+﻿
+@model EFCodeFirstApproach.Models.Employee
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details of a Single Employee</h2>
+
+<table class="table">
+    <tr>
+        <th>Employee ID</th>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <th>Employee Name</th>
+        <td>@Model.EmpName</td>
+    </tr>
+    <tr>
+        <th>Employee Salary</th>
+        <td>@Model.Salary</td>
+    </tr>
+    <tr>
+        <th>Department ID</th>
+        <td>@Model.Department.DeptId</td>
+    </tr>
+    <tr>
+        <th>Department Name</th>
+        <td>@Model.Department.DeptName</td>
+    </tr>
+    <tr>
+        <th>Manager Name</th>
+        <td>@Model.Manager.ManagerName</td>
+    </tr>
+</table>
+
+@Html.ActionLink("Back", "Index", "Employee") 
+
+

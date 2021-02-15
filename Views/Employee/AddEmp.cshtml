@@ -1,0 +1,100 @@
+﻿@model EFCodeFirstApproach.Models.Employee
+@*@model EFCodeFirstApproach.ViewModels.EmpDeptViewModel*@
+@{
+    ViewBag.Title = "AddEmp";
+}
+
+
+<h2>Add New Employee</h2>
+
+
+@using (Html.BeginForm("AddEmp", "Employee"))
+{
+
+@*<form action="/Employee/AddEmp" method="post" enctype="multipart/form-data">*@
+    <div class="form-row">
+        <div class="form-group col-md-6">
+
+            @Html.LabelFor(m => m.EmpName)
+
+            @Html.TextBoxFor(m => m.EmpName, new { @class = "form-control field-validation-error", placeholder = "Employeename" })
+
+           
+            @Html.ValidationMessageFor(m => m.EmpName, "", new { @class = "text-danger" })
+            
+
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.Salary)
+
+            @Html.TextBoxFor(m => m.Salary, new { @class = "form-control", placeholder = "Salary(eg:1322.34).." })
+        </div>
+        @*<div class="form-group col-md-6">
+            @Html.LabelFor(m => m.Manager.ManagerName)
+
+            @Html.TextBoxFor(m => m.Manager.ManagerName, new { @class = "form-control", placeholder = "ManagerName" })
+        </div>*@
+        @*<div class="form-group col-md-6">
+            @Html.LabelFor(m => m.Department.DeptId)
+            @Html.TextBoxFor(m => m.Department.DeptId, new { @class = "form-control", placeholder = "Department is should be between 1-3.." })
+
+        </div>*@
+        @*<div class="form-group col-md-6">
+        @Html.LabelFor(m => m.AllDepts)
+        <select class="form-control" id="deptid" name="DeptId">
+            <option value="">Please Select DeptName</option>
+            @foreach (var d in Model.AllDepts)
+            {
+                <option value="@d.DeptId">@d.DeptName</option>
+            }
+        </select>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.AllManagers)
+            <select class="form-control" id="managerid" name="ManagerId">
+                <option value="">Please Select ManagerName</option>
+                @foreach (var d in Model.AllManagers)
+                {
+                    <option value="@d.ManagerId">@d.ManagerName</option>
+                }
+            </select>*@
+
+
+        <div class="form-group col-md-6">
+        @Html.LabelFor(m => m.DeptId)
+        <select class="form-control" id="deptid" name="DeptId">
+            <option value="">Please Select DeptName</option>
+            @foreach (var d in ViewBag.Depts)
+            {
+                <option value="@d.DeptId">@d.DeptName</option>
+            }
+        </select>
+         
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.ManagerId)
+            <select class="form-control" id="managerid" name="ManagerId">
+                <option value="">Please Select ManagerName</option>
+                @foreach (var d in ViewBag.MngId)
+                {
+                    <option value="@d.ManagerId">@d.ManagerName</option>
+                }
+            </select>
+
+
+
+        @*@Html.TextBoxFor(m => m.Department.DeptName, new { @class = "form-control", placeholder = "Department Name" })*@
+        @*@Html.DropDownListFor(e=>e.Department.DeptName,new SelectList { Model.DeptId })*@
+    </div>
+
+    </div>
+     
+    </div>
+    @Html.ValidationSummary()
+    <button type="submit" class="btn btn-success">Add Employee</button>
+        @*@Html.ActionLink("Add Employee","Index","Employee",new { @class = "btn btn-success" })
+    @Html.ActionLink("Cancel", "Index", "Employee", new { @class="btn btn-dark"})*@
+    <a class="btn btn-dark" href="/Employee/Index">Cancel</a>
+
+@*</form>*@
+        }
+
+@*@Scripts.Render("~/ bundles / jqueryval")*@

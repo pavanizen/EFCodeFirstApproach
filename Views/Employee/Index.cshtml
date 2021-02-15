@@ -1,0 +1,43 @@
+﻿@model IEnumerable<EFCodeFirstApproach.Models.Employee>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<h2>Employee List</h2>
+@*<a href="/Employee/AddEmp" class="btn btn-outline-primary">Add Employee</a>*@
+@Html.ActionLink("Add Employee", "AddEmp", "Employee", new { @class="btn btn-primary"})
+<form class="form-inline" action="/Employee/index">
+    @Html.Label("Search", new { @class = "mr-1" })
+    @Html.TextBox("Search", @ViewBag.search as string, new { @class = "form-control mr-1", placeholder = "Search" })
+
+    <button type="submit" class="btn btn-primary">Go</button>
+</form>
+
+<table class="table">
+    <tr>
+        <th>EmployeeName</th>
+        <th>Salary</th>
+        <th>DeptId</th>
+        <th>Manager Name</th>
+        <th>Department Name</th>
+    </tr>
+    @foreach (var v in Model)
+    {
+<tr>
+     <td>@Html.ActionLink(v.EmpName,"Details",new { @v.Id },"Employee")</td>
+             <td>@Html.DisplayFor(e => v.Salary)</td>
+   <td>@Html.DisplayFor(e => v.DeptId)</td>
+  <td>@Html.DisplayFor(e=>v.Manager.ManagerName)</td>
+   <td>@Html.DisplayFor(e => v.Department.DeptName)</td>
+
+    <td>@Html.ActionLink("ShowDetails", "Details", new { id = v.Id }, "Employee")</td>
+    <td>@Html.ActionLink("Edit", "UpdateEmp","Employee", new { id = v.Id },new{@class="btn btn-primary"})</td>
+    <td>@Html.ActionLink("Delete", "Delete", "Employee", new { id = v.Id }, new { @class = "btn btn-danger" })</td>
+
+
+</tr>
+    }
+
+</table>
